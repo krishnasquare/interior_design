@@ -6,26 +6,289 @@
     <title>Sneha Decors | Interior Design Excellence</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B7355;
+            --secondary: #D8CFC4;
+            --accent: #A52A2A;
+            --light: #F8F5F2;
+            --dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            margin-top: 80px;
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .hero-content {
+            transform-style: preserve-3d;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .hero h2 {
+            transform: translateZ(50px);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            transform: translateZ(30px);
+            text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero .btn {
+            transform: translateZ(40px);
+            box-shadow: 0 10px 25px rgba(165, 42, 42, 0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover:before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #8a1f1f;
+        }
+        
+        .portfolio-item {
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px) rotateX(5deg);
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .service-card {
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.08);
+        }
+        
+        .section-title {
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease;
+        }
+        
+        .zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .stagger-child > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .stagger-child.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stagger-child.visible > *:nth-child(1) { transition-delay: 0.1s; }
+        .stagger-child.visible > *:nth-child(2) { transition-delay: 0.2s; }
+        .stagger-child.visible > *:nth-child(3) { transition-delay: 0.3s; }
+        .stagger-child.visible > *:nth-child(4) { transition-delay: 0.4s; }
+        .stagger-child.visible > *:nth-child(5) { transition-delay: 0.5s; }
+        .stagger-child.visible > *:nth-child(6) { transition-delay: 0.6s; }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Mobile menu animation */
+        #mobile-nav {
+            transition: all 0.4s ease;
+        }
+        
+        #mobile-nav.active {
+            left: 0;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.2);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-[#F8F5F2]">
     <!-- Header -->
     <header class="fixed w-full top-0 z-50 bg-white bg-opacity-95 shadow-md">
         <div class="container mx-auto px-4 py-5 flex justify-between items-center">
             <div class="logo flex items-center">
-                <h1 class="text-2xl font-bold text-primary">Sneha <span class="text-accent">Decors</span></h1>
+                <h1 class="text-2xl font-bold text-[#8B7355]">Sneha <span class="text-[#A52A2A]">Decors</span></h1>
             </div>
             <nav class="hidden md:block" id="desktop-nav">
                 <ul class="flex space-x-8">
-                    <li><a href="#home" class="text-dark hover:text-accent transition-colors font-medium">Home</a></li>
-                    <li><a href="#about" class="text-dark hover:text-accent transition-colors font-medium">About</a></li>
-                    <li><a href="#services" class="text-dark hover:text-accent transition-colors font-medium">Services</a></li>
-                    <li><a href="#portfolio" class="text-dark hover:text-accent transition-colors font-medium">Portfolio</a></li>
-                    <li><a href="#contact" class="text-dark hover:text-accent transition-colors font-medium">Contact</a></li>
+                    <li><a href="#home" class="nav-link text-[#333] hover:text-[#A52A2A] transition-colors font-medium">Home</a></li>
+                    <li><a href="#about" class="nav-link text-[#333] hover:text-[#A52A2A] transition-colors font-medium">About</a></li>
+                    <li><a href="#services" class="nav-link text-[#333] hover:text-[#A52A2A] transition-colors font-medium">Services</a></li>
+                    <li><a href="#portfolio" class="nav-link text-[#333] hover:text-[#A52A2A] transition-colors font-medium">Portfolio</a></li>
+                    <li><a href="#contact" class="nav-link text-[#333] hover:text-[#A52A2A] transition-colors font-medium">Contact</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu-btn md:hidden" id="menu-btn">
-                <i class="fas fa-bars text-2xl text-primary"></i>
+                <i class="fas fa-bars text-2xl text-[#8B7355]"></i>
             </div>
         </div>
     </header>
@@ -33,17 +296,17 @@
     <!-- Mobile Navigation -->
     <nav class="fixed top-20 left-[-100%] w-full h-[calc(100vh-80px)] bg-white transition-all duration-300 py-10 z-40 md:hidden" id="mobile-nav">
         <ul class="flex flex-col items-center space-y-6">
-            <li><a href="#home" class="text-dark hover:text-accent transition-colors text-xl font-medium">Home</a></li>
-            <li><a href="#about" class="text-dark hover:text-accent transition-colors text-xl font-medium">About</a></li>
-            <li><a href="#services" class="text-dark hover:text-accent transition-colors text-xl font-medium">Services</a></li>
-            <li><a href="#portfolio" class="text-dark hover:text-accent transition-colors text-xl font-medium">Portfolio</a></li>
-            <li><a href="#contact" class="text-dark hover:text-accent transition-colors text-xl font-medium">Contact</a></li>
+            <li><a href="#home" class="nav-link text-[#333] hover:text-[#A52A2A] transition-colors text-xl font-medium">Home</a></li>
+            <li><a href="#about" class="nav-link text-[#333] hover:text-[#A52A2A] transition-colors text-xl font-medium">About</a></li>
+            <li><a href="#services" class="nav-link text-[#333] hover:text-[#A52A2A] transition-colors text-xl font-medium">Services</a></li>
+            <li><a href="#portfolio" class="nav-link text-[#333] hover:text-[#A52A2A] transition-colors text-xl font-medium">Portfolio</a></li>
+            <li><a href="#contact" class="nav-link text-[#333] hover:text-[#A52A2A] transition-colors text-xl font-medium">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero h-screen flex items-center justify-center text-center" id="home">
-        <div class="container mx-auto px-4 max-w-4xl">
+    <section class="hero h-screen flex items-center justify-center text-center parallax" id="home">
+        <div class="container mx-auto px-4 max-w-4xl hero-content">
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Transform Your Space Into Art</h2>
             <p class="text-xl text-white mb-8">Elevate your living and working environments with our expert interior design solutions. Where creativity meets functionality.</p>
             <a href="#contact" class="btn btn-accent">Book a Consultation</a>
@@ -53,19 +316,19 @@
     <!-- About Section -->
     <section class="py-20" id="about">
         <div class="container mx-auto px-4">
-            <div class="section-title text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">About Sneha Decors</h2>
-                <p class="text-dark max-w-2xl mx-auto">Learn about our vision, mission, and what makes us the preferred choice for interior design</p>
+            <div class="section-title text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#8B7355] mb-4">About Sneha Decors</h2>
+                <p class="text-[#333] max-w-2xl mx-auto">Learn about our vision, mission, and what makes us the preferred choice for interior design</p>
             </div>
             <div class="about-content flex flex-col md:flex-row items-center gap-12">
-                <div class="about-text md:w-1/2">
-                    <h3 class="text-2xl md:text-3xl font-bold text-primary mb-6">Creating Beautiful Spaces Since 2010</h3>
+                <div class="about-text md:w-1/2 slide-in-left">
+                    <h3 class="text-2xl md:text-3xl font-bold text-[#8B7355] mb-6">Creating Beautiful Spaces Since 2010</h3>
                     <p class="mb-4">Sneha Decors is a premier interior design firm based in Tirupati, dedicated to transforming spaces into beautiful, functional environments that reflect our clients' personalities and needs.</p>
                     <p class="mb-4">Our team of experienced designers and craftsmen work closely with each client to create customized solutions that exceed expectations. We pay attention to every detail, from concept to completion, ensuring a seamless and enjoyable experience.</p>
                     <p class="mb-8">With expertise in both residential and commercial interiors, we bring creativity, innovation, and practicality to every project we undertake.</p>
                     <a href="#services" class="btn">Our Services</a>
                 </div>
-                <div class="about-image md:w-1/2 rounded-xl overflow-hidden shadow-lg">
+                <div class="about-image md:w-1/2 rounded-xl overflow-hidden shadow-lg slide-in-right floating">
                     <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1572&q=80" alt="About Sneha Decors" class="w-full h-auto">
                 </div>
             </div>
@@ -73,76 +336,76 @@
     </section>
 
     <!-- Services Section -->
-    <section class="py-20 bg-light" id="services">
+    <section class="py-20 bg-[#F8F5F2]" id="services">
         <div class="container mx-auto px-4">
-            <div class="section-title text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Our Services</h2>
-                <p class="text-dark max-w-2xl mx-auto">Comprehensive interior design solutions for residential and commercial spaces</p>
+            <div class="section-title text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#8B7355] mb-4">Our Services</h2>
+                <p class="text-[#333] max-w-2xl mx-auto">Comprehensive interior design solutions for residential and commercial spaces</p>
             </div>
-            <div class="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-child">
                 <!-- Service 1 -->
-                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md transition-transform hover:translate-y-[-5px] hover:shadow-lg">
+                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md">
                     <div class="service-image h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1558&q=80" alt="Residential Interior Design" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1558&q=80" alt="Residential Interior Design" class="w-full h-full object-cover transition-transform duration-300">
                     </div>
                     <div class="service-content p-6">
-                        <h3 class="text-xl font-bold text-primary mb-3">Residential Interior Design</h3>
-                        <p class="text-dark">Transform your home into a personalized sanctuary with our custom residential design solutions.</p>
+                        <h3 class="text-xl font-bold text-[#8B7355] mb-3">Residential Interior Design</h3>
+                        <p class="text-[#333]">Transform your home into a personalized sanctuary with our custom residential design solutions.</p>
                     </div>
                 </div>
                 
                 <!-- Service 2 -->
-                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md transition-transform hover:translate-y-[-5px] hover:shadow-lg">
+                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md">
                     <div class="service-image h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80" alt="Commercial Interior Design" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80" alt="Commercial Interior Design" class="w-full h-full object-cover transition-transform duration-300">
                     </div>
                     <div class="service-content p-6">
-                        <h3 class="text-xl font-bold text-primary mb-3">Commercial Interior Design</h3>
-                        <p class="text-dark">Create productive and inspiring work environments with our commercial interior expertise.</p>
+                        <h3 class="text-xl font-bold text-[#8B7355] mb-3">Commercial Interior Design</h3>
+                        <p class="text-[#333]">Create productive and inspiring work environments with our commercial interior expertise.</p>
                     </div>
                 </div>
                 
                 <!-- Service 3 -->
-                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md transition-transform hover:translate-y-[-5px] hover:shadow-lg">
+                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md">
                     <div class="service-image h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Modular Kitchen" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Modular Kitchen" class="w-full h-full object-cover transition-transform duration-300">
                     </div>
                     <div class="service-content p-6">
-                        <h3 class="text-xl font-bold text-primary mb-3">Modular Kitchen</h3>
-                        <p class="text-dark">Design beautiful and functional kitchens that become the heart of your home.</p>
+                        <h3 class="text-xl font-bold text-[#8B7355] mb-3">Modular Kitchen</h3>
+                        <p class="text-[#333]">Design beautiful and functional kitchens that become the heart of your home.</p>
                     </div>
                 </div>
                 
                 <!-- Service 4 -->
-                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md transition-transform hover:translate-y-[-5px] hover:shadow-lg">
+                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md">
                     <div class="service-image h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1533038590845-8c33bba7e48b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="False Ceiling" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1533038590845-8c33bba7e48b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="False Ceiling" class="w-full h-full object-cover transition-transform duration-300">
                     </div>
                     <div class="service-content p-6">
-                        <h3 class="text-xl font-bold text-primary mb-3">False Ceiling</h3>
-                        <p class="text-dark">Enhance your space with elegant false ceiling designs that add dimension and style.</p>
+                        <h3 class="text-xl font-bold text-[#8B7355] mb-3">False Ceiling</h3>
+                        <p class="text-[#333]">Enhance your space with elegant false ceiling designs that add dimension and style.</p>
                     </div>
                 </div>
                 
                 <!-- Service 5 -->
-                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md transition-transform hover:translate-y-[-5px] hover:shadow-lg">
+                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md">
                     <div class="service-image h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1599619585752-c3f01dd27e2c?ixlib=rb-4.0.3&ixid=M3wxMjA极3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Flooring Solutions" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1599619585752-c3f01dd27e2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx极fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Flooring Solutions" class="w-full h-full object-cover transition-transform duration-300">
                     </div>
                     <div class="service-content p-6">
-                        <h3 class="text-xl font-bold text-primary mb-3">Flooring Solutions</h3>
-                        <p class="text-dark">Choose from a wide range of flooring options to complement your interior design.</p>
+                        <h3 class="text-xl font-bold text-[#8B7355] mb-3">Flooring Solutions</h3>
+                        <p class="text-[极333]">Choose from a wide range of flooring options to complement your interior design.</p>
                     </div>
                 </div>
                 
                 <!-- Service 6 -->
-                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md transition-transform hover:translate-y-[-5px] hover:shadow-lg">
+                <div class="service-card bg-white rounded-lg overflow-hidden shadow-md">
                     <div class="service-image h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Lighting Design" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd极4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Lighting Design" class="w-full h-full object-cover transition-transform duration-300">
                     </div>
                     <div class="service-content p-6">
-                        <h3 class="text-xl font-bold text-primary mb-3">Lighting Design</h3>
-                        <p class="text-dark">Illuminate your space with carefully designed lighting that enhances ambiance and functionality.</p>
+                        <h3 class="text-xl font-bold text-[#8B7355] mb-3">Lighting Design</h3>
+                        <p class="text-[#333]">Illuminate your space with carefully designed lighting that enhances ambiance and functionality.</p>
                     </div>
                 </div>
             </div>
@@ -150,17 +413,17 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section class="py-20" id="portfolio">
+    <section class="py-20 parallax" style="background-image: url('https://images.unsplash.com/photo-1622372738946-62e02505feb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1820&q=80');" id="portfolio">
         <div class="container mx-auto px-4">
-            <div class="section-title text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Our Portfolio</h2>
-                <p class="text-dark max-w-2xl mx-auto">Explore our completed projects and get inspired for your next interior design project</p>
+            <div class="section-title text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Portfolio</h2>
+                <p class="text-white max-w-2xl mx-auto">Explore our completed projects and get inspired for your next interior design project</p>
             </div>
-            <div class="portfolio-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="portfolio-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-child">
                 <!-- Portfolio Item 1 -->
                 <div class="portfolio-item relative rounded-lg overflow-hidden h-80">
-                    <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?ixlib=rb-4.0.3&ixid=M3wxMjA3极fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Modern Living Room" class="w-full h-full object-cover transition-transform duration-300">
-                    <div class="portfolio-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center opacity-0 transition-opacity duration-300 text-white p-4">
+                    <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Modern Living Room" class="w-full h-full object-cover transition-transform duration-300">
+                    <div class="portfolio-overlay absolute inset-0 bg-[#8B7355] bg-opacity-80 flex flex-col justify-center items-center opacity-0 transition-opacity duration-300 text-white p-4">
                         <h3 class="text-xl font-bold mb-2">Modern Living Room</h3>
                         <p>Residential Design</p>
                     </div>
@@ -168,8 +431,8 @@
                 
                 <!-- Portfolio Item 2 -->
                 <div class="portfolio-item relative rounded-lg overflow-hidden h-80">
-                    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aaa4c4b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Office Space" class="w-full h-full object-cover transition-transform duration-300">
-                    <div class="portfolio-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center opacity-0 transition-opacity duration-300 text-white p-4">
+                    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aaa4c4b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&极=80" alt="Office Space" class="w-full h-full object-cover transition-transform duration-300">
+                    <div class="portfolio-overlay absolute inset-0 bg-[#8B7355] bg-opacity-80 flex flex-col justify-center items-center opacity-0 transition-opacity duration-300 text-white p-4">
                         <h3 class="text-xl font-bold mb-2">Corporate Office</h3>
                         <p>Commercial Design</p>
                     </div>
@@ -178,8 +441,8 @@
                 <!-- Portfolio Item 3 -->
                 <div class="portfolio-item relative rounded-lg overflow-hidden h-80">
                     <img src="https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Luxury Kitchen" class="w-full h-full object-cover transition-transform duration-300">
-                    <div class="portfolio-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center opacity-0 transition-opacity duration-300 text-white p-4">
-                        <h3 class="text-xl font-bold mb-2">Luxury Kitchen</h3>
+                    <div class="portfolio-overlay absolute inset-0 bg-[#8B7355] bg-opacity-80 flex flex-col justify-center items-center opacity-0 transition-opacity duration-300 text-white p-4">
+                        <h3 class="text-xl font-bold mb-2">Luxury Kitchen</极3>
                         <p>Modular Kitchen</p>
                     </div>
                 </div>
@@ -188,70 +451,70 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="py-20 bg-light" id="contact">
+    <section class="py-20 bg-[#F8F5F2]" id="contact">
         <div class="container mx-auto px-4">
-            <div class="section-title text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Contact Us</h2>
-                <p class="text-dark max-w-2xl mx-auto">Get in touch with us to discuss your interior design project</p>
+            <div class="section-title text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#8B7355] mb-4">Contact Us</h2>
+                <p class="text-[#333] max-w-2xl mx-auto">Get in touch with us to discuss your interior design project</p>
             </div>
             <div class="contact-container grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div class="contact-info flex flex-col gap-6">
+                <div class="contact-info flex flex-col gap-6 slide-in-left">
                     <div class="contact-detail flex items-start gap-4">
-                        <i class="fas fa-phone text-2xl text-primary mt-1"></i>
+                        <i class="fas fa-phone text-2xl text-[#8B7355] mt-1"></i>
                         <div>
-                            <h4 class="text-lg font-bold text-primary mb-1">Phone</h4>
-                            <p class="text-dark">0877 222 2268</p>
+                            <h4 class="text-lg font-bold text-[#8B7355] mb-1">Phone</h4>
+                            <p class="text-[#333]">0877 222 2268</p>
                         </div>
                     </div>
                     
                     <div class="contact-detail flex items-start gap-4">
-                        <i class="fas fa-map-marker-alt text-2xl text-primary mt-1"></i>
+                        <i class="fas fa-map-marker-alt text-2xl text-[#8B7355] mt-1"></i>
                         <div>
-                            <h4 class="text-lg font-bold text-primary mb-1">Address</h4>
-                            <p class="text-dark">19-4-121, 14D, Air Bypass Rd, near TVS Show Room, New Balaji Colony, Tirupati, Andhra Pradesh 517501</p>
+                            <h4 class="text-lg font-bold text-[#8B7355] mb-1">Address</h4>
+                            <p class="text-[#333]">19-4-121, 14D, Air Bypass Rd, near TVS Show Room, New Balaji Colony, Tirupati, Andhra Pradesh 517501</p>
                         </div>
                     </div>
                     
                     <div class="contact-detail flex items-start gap-4">
-                        <i class="fas fa-clock text-2xl text-primary mt-1"></i>
+                        <i class="fas fa-clock text-2xl text-[#8B7355] mt-1"></i>
                         <div>
-                            <h4 class="text-lg font-bold text-primary mb-1">Business Hours</h4>
-                            <p class="text-dark">Monday - Saturday: 9:00 AM - 6:00 PM</p>
-                            <p class="text-dark">Sunday: Closed</p>
+                            <h4 class="text-lg font-bold text-[#8B7355] mb-1">Business Hours</h4>
+                            <p class="text-[#333]">Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                            <p class="text-[#333]">Sunday: Closed</p>
                         </div>
                     </div>
                     
                     <div class="map-container h-80 rounded-lg overflow-hidden mt-4">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3880.908899999625!2d79.4191949749151!3d13.629898486654597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d4b85ecfbb0c1%3A0x93b511cb32e3151c!2sTirupati%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1687853328963!5m2!1sen!2sin" class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3880.908899999625!2d79.4191949749151!3d13.629898486654597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d4b85ecfbb0c1%3A0极93b511cb32e3151c!2sTirupati%2C%20Andhra%20Pradesh!5e0极3m2!1sen!2sin!4v1687853328963!5m2!1sen!2sin" class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
                 
-                <div class="contact-form bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold text-primary mb-6">Get a Quote</h3>
+                <div class="contact-form bg-white p-8 rounded-lg shadow-md slide-in-right">
+                    <h3 class="text-2xl font-bold text-[#8B7355] mb-6">Get a Quote</h3>
                     <form id="quoteForm">
                         <div class="form-group mb-5">
-                            <label for="name" class="block text-dark font-medium mb-2">Your Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+                            <label for="name" class="block text-[#333] font-medium mb-2">Your Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8B7355]" required>
                         </div>
                         
                         <div class="form-group mb-5">
-                            <label for="email" class="block text-dark font-medium mb-2">Email Address</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+                            <label for="email" class="block text-[#333] font-medium mb-2">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8B7355]" required>
                         </div>
                         
                         <div class="form-group mb-5">
-                            <label for="phone" class="block text-dark font-medium mb-2">Phone Number</label>
-                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                            <label for="phone" class="block text-[#333] font-medium mb-2">Phone Number</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8B7355]">
                         </div>
                         
                         <div class="form-group mb-5">
-                            <label for="service" class="block text-dark font-medium mb-2">Service Interested In</label>
-                            <input type="text" id="service" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                            <label for="service" class="block text-[#333] font-medium mb-2">Service Interested In</label>
+                            <input type="text" id="service" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8B7355]">
                         </div>
                         
                         <div class="form-group mb-5">
-                            <label for="message" class="block text-dark font-medium mb-2">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
+                            <label for="message" class="block text-[#333] font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8B7355]" required></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-accent w-full">Submit Request</button>
@@ -262,43 +525,43 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-16">
+    <footer class="bg-[#333] text-white py-16">
         <div class="container mx-auto px-4">
             <div class="footer-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                 <div class="footer-col">
-                    <h3 class="text-xl font-bold text-secondary mb-6">Sneha Decors</h3>
+                    <h3 class="text-xl font-bold text-[#D8CFC4] mb-6">Sneha Decors</h3>
                     <p class="text-gray-400 mb-4">Transforming spaces with innovative interior design solutions for both residential and commercial clients.</p>
                     <div class="social-links flex space-x-4 mt-5">
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center transition-colors hover:bg-primary"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center transition-colors hover:bg-primary"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center transition-colors hover:bg-primary"><i class="fab fa-pinterest"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center transition-colors hover:bg-primary"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center transition-colors hover:bg-[#8B7355]"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center transition-colors hover:bg-[#8B7355]"><i class="fab fa-instagram"></极></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center transition-colors hover:bg-[#8B7355]"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center transition-colors hover:bg-[#8B7355]"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-col">
-                    <h3 class="text-xl font-bold text-secondary mb-6">Quick Links</h3>
-                    <a href="#home" class="block text-gray-400 hover:text-secondary mb-3 transition-colors">Home</a>
-                    <a href="#about" class="block text-gray-400 hover:text-secondary mb-3 transition-colors">About Us</a>
-                    <a href="#services" class="block text-gray-400 hover:text-secondary mb-3 transition-colors">Services</a>
-                    <a href="#portfolio" class="block text-gray-400 hover:text-secondary mb-3 transition-colors">Portfolio</a>
-                    <a href="#contact" class="block text-gray-400 hover:text-secondary transition-colors">Contact</a>
+                    <h3 class="text-xl font-bold text-[#D8CFC4] mb-6">Quick Links</h3>
+                    <a href="#home" class="block text-gray-400 hover:text-[#D8CFC4] mb-3 transition-colors">Home</a>
+                    <a href="#about" class="block text-gray-400 hover:text-[#D8CFC4] mb-3 transition-colors">About Us</a>
+                    <a href="#services" class="block text-gray-400 hover:text-[#D8CFC4] mb-3 transition-colors">Services</a>
+                    <a href="#portfolio" class="block text-gray-400 hover:text-[#D8CFC4] mb-3 transition-colors">Portfolio</a>
+                    <a href="#contact" class="block text-gray-400 hover:text-[#D8CFC4] transition-colors">Contact</a>
                 </div>
                 
                 <div class="footer-col">
-                    <h3 class="text-xl font-bold text-secondary mb-6">Services</h3>
-                    <a href="#" class="block text-gray-400 hover:text-secondary mb-3 transition-colors">Residential Design</a>
-                    <a href="#" class="block text-gray-400 hover:text-secondary mb-3 transition-colors">Commercial Design</a>
-                    <a href="#" class="block text-gray-400 hover:text-secondary mb-3 transition-colors">Modular Kitchen</a>
-                    <a href="#" class="block text-gray-400 hover:text-secondary mb-3 transition-colors">False Ceiling</a>
-                    <a href="#" class="block text-gray-400 hover:text-secondary transition-colors">Flooring Solutions</a>
+                    <h3 class="text-xl font-bold text-[#D8CFC4] mb极6">Services</h3>
+                    <a href="#" class="block text-gray-400 hover:text-[#D8CFC4] mb-3 transition-colors">Residential Design</a>
+                    <a href="#" class="block text-gray-400 hover:text-[#D8CFC4极 mb-3 transition-colors">Commercial Design</a>
+                    <a href="#" class="block text-gray-400 hover:text-[#D8CFC4] mb-3 transition-colors">Modular Kitchen</a>
+                    <a href="#" class="block text-gray-400 hover:text-[#D8CFC4] mb-3 transition-colors">False Ceiling</a>
+                    <a href="#" class="block text-gray-400 hover:text-[#D8CFC4] transition-colors">Flooring Solutions</a>
                 </div>
                 
                 <div class="footer-col">
-                    <h3 class="text-xl font-bold text-secondary mb-6">Contact Info</h3>
-                    <p class="text-gray-400 mb-3 flex items-center"><i class="fas fa-phone mr-3 text-primary"></i> 0877 222 2268</p>
-                    <p class="text-gray-400 mb-3 flex items-start"><i class="fas fa-map-marker-alt mr-3 text-primary mt-1"></i> 19-4-121, 14D, Air Bypass Rd, near TVS Show Room, New Balaji Colony, Tirupati, Andhra Pradesh 517501</p>
-                    <p class="text-gray-400 flex items-center"><i class="fas fa-envelope mr-3 text-primary"></i> info@snehadecors.com</p>
+                    <h3 class="text-xl font-bold text-[#D8CFC4] mb-6">Contact Info</h3>
+                    <p class="text-gray-400 mb-3 flex items-center"><i class="fas fa-phone mr-3 text-[#8B7355]"></i> 0877 222 2268</p>
+                    <p class="text-gray-400 mb-3 flex items-start"><i class="fas fa-map-marker-alt mr-3 text-[#8B7355] mt-1"></i> 19-4-121, 14D, Air Bypass Rd, near TVS Show Room, New Balaji Colony, Tirupati, Andhra Pradesh 517501</p>
+                    <p class="text-gray-400 flex items-center"><i class="fas fa-envelope mr-3 text-[#8B7355]"></i> info@snehadecors.com</p>
                 </div>
             </div>
             
@@ -308,6 +571,116 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        const desktopNav = document.getElementById('desktop-nav');
+
+        menuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Form submission
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your inquiry! We will contact you shortly.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Calculate adjustment for fixed header
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        function checkScroll() {
+            const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in, .stagger-child');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
+                
+                if (isVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Initial check
+        window.addEventListener('load', checkScroll);
+        // Check on scroll
+        window.addEventListener('scroll', checkScroll);
+
+        // Portfolio hover effect
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        portfolioItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const img = item.querySelector('img');
+                img.style.transform = 'scale(1.1)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                const img = item.querySelector('img');
+                img.style.transform = 'scale(1)';
+            });
+        });
+
+        // Add active class to navigation links on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const headerHeight = document.querySelector('header').offsetHeight;
+                
+                if (window.scrollY >= (sectionTop - headerHeight - 50)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
